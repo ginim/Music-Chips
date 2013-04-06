@@ -1,0 +1,162 @@
+@charset "UTF-8";
+/* CSS Document */
+
+@import url(http://fonts.googleapis.com/css?family=Kameron);
+
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Kameron', serif;
+	font-weight: normal;
+	text-decoration: none;
+	border: 0px;
+}
+
+body {
+	color: #333333;
+	background: #FAFAFA;
+}
+
+header {
+	padding: 30px;
+	border-bottom: solid 1px #DEDEDE;
+	text-shadow: 2px 1px #FFFFFF;
+	clear: both;
+}
+
+div[role=main] {
+	padding: 30px;
+	background: #FFFFFF;
+	border-top: solid 2px #EFEFEF;
+	border-bottom: solid 1px #E6E6E6;
+}
+	div[role=main]:before, div[role=main]:after {
+    	content: "";
+    	display: table;
+	}
+	div[role=main]:after {
+    	clear: both;
+	}
+
+footer {
+	clear: both;
+	padding: 30px;
+	border-top: solid 2px #F6F6F6;
+	color: #888888;
+	text-shadow: 1px 1px #FFFFFF;
+}
+
+h1 {
+	background-image: url(../img/musicchips.png);
+	background-repeat: no-repeat;
+	background-position: left 6px;
+	padding-left: 35px;
+}
+
+#albumsearch {
+	clear: both;
+	overflow: hidden;
+	margin: 0px 0px 20px 0px;
+}
+	#search_keyword {
+		width: 210px;
+		float: left;
+		margin: 5px 0px;
+		border: solid 2px #CCCCCC;
+		font-size: large;
+		padding: 2px 4px;
+	}
+	#search_submit {
+		width: 80px;
+		float: left;
+		margin: 5px 0px 5px 5px;
+		background: #F5AB58;
+		border: solid 1px #F5AB58;
+		color: #FFFFFF;
+		font-size: large;
+		padding: 2px 4px;
+	}
+
+#albums {
+	width: 330px;
+	height: 310px;
+	float: left;
+	margin-right: 30px;
+	overflow-y: scroll;
+}
+	.cover {
+		max-width: 300px;
+		max-height: 300px;
+		border-radius: 15px;
+		border: solid 5px #FFFFFF;
+		margin: 0px 0px 10px 0px;
+	}
+	.thiscover {
+		border: solid 5px #EFEFEF;
+	}
+
+#palettes {
+	overflow: auto;
+}
+#swatches {
+	overflow: hidden;
+}
+.swatch {
+	width: 25px;
+	height: 25px;
+	float: left;
+	border: solid 1px #EFEFEF;
+	margin-right: 5px;
+}
+.clickable {
+	float: left;
+	margin: 3px 5px 0px 5px;
+	color: #999999;
+}
+	.clickable:hover {
+		color: #FF3333;
+		cursor: pointer;
+	}
+
+#examples, #showdetails {
+	margin-top: 30px;
+	border: solid 1px #EFEFEF;
+	padding: 20px;
+	overflow: hidden;
+}
+#showdetails {
+	display: none;
+}
+	.details {
+		clear: both;
+		margin-bottom: 5px;
+	}
+	.miniswatch {
+		width: 15px;
+		height: 15px;
+		float: left;
+		margin-right: 5px;
+	}
+	#examples h2, #examples h3 {
+		margin-bottom: 5px;
+	}
+	#examples button, #showdetails button {
+		padding: 5px 10px;
+		border: 0px;
+		float: right;
+		margin-top: 5px;
+	}
+
+
+/* Tooltips */
+.tooltip {
+	padding: 5px;
+	opacity: 0.85;
+	filter: alpha(opacity=85);
+}
+.tooltip-inner {
+	padding: 5px 10px;
+	color: #EFEFEF;
+	background-color: #666666;
+	border-radius: 3px;
+}

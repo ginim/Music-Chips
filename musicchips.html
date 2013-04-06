@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Music Chips</title>
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<script src='http://code.jquery.com/jquery-1.9.1.min.js'></script>
+<script src="js/libs/quantize.js"></script>
+<script src="js/color-thief.js"></script>
+<script src="js/jquery.tooltip.js"></script>
+</head>
+
+<body>
+	<header>
+		<h1>Music Chips</h1>
+		<p>An exercise.</p>
+	</header>
+    <div role="main">
+    	<div id="albumsearch">
+        	<input name="keywords" id="search_keyword" type="text">
+            <input name="submitbutton" id="search_submit" type="button" value="Search">
+        </div>
+    	<div id="albums">
+        	<img src="img/cyborgoretachi.jpg" class="cover">
+            <img src="img/bacon.png" class="cover">
+            <img src="img/nookawari.jpg" class="cover">
+            <img src="img/departure.gif" class="cover">
+            <img src="img/impression.jpg" class="cover">
+            <img src="img/masta.gif" class="cover">
+        </div>
+        <div id="palettes">
+        	<h2>Album Palette</h2>
+        	<div id="swatches">
+				<div id="palette0" class="swatch bottom"></div>
+				<div id="palette1" class="swatch bottom"></div>
+				<div id="palette2" class="swatch bottom"></div> 
+				<div id="palette3" class="swatch bottom"></div>
+				<div id="palette4" class="swatch bottom"></div>
+				<div id="palette5" class="swatch bottom"></div>
+                <div id="details" class="clickable">Details</div>
+                <div id="reset" class="clickable">Reset</div>
+			</div>
+            <div id="examples">
+            	<h2>Palette Example</h2><h3>Subheading...</h3><p>Paragraph.  Lorem ipsum sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. <a href="#">This is a link</a>.  Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p><button><big>Button</big></button>
+            </div>
+            <div id="showdetails">
+            	<div id="minipalette0" class="details"><div class="miniswatch"></div> <span></span></div>
+				<div id="minipalette1" class="details"><div class="miniswatch"></div> <span></span></div>
+				<div id="minipalette2" class="details"><div class="miniswatch"></div> <span></span></div>
+				<div id="minipalette3" class="details"><div class="miniswatch"></div> <span></span></div>
+				<div id="minipalette4" class="details"><div class="miniswatch"></div> <span></span></div>
+				<div id="minipalette5" class="details"><div class="miniswatch"></div> <span></span></div>
+            </div>
+		</div>        
+    </div>
+	<footer>
+    	<small>Gini made dis.</small>
+    </footer>
+
+<script type="text/javascript">
+$.support.cors = true;
+$('.bottom').tooltip({align: 'bottom'});
+
+var getCover = function() {
+	// Create palette from selected cover
+	return createPalette($('.thiscover'), 6); // 2nd argument sets # of colors in palette
+}
+
+function rgbArray2hex(rgbArray) {
+	// RGB to HEX base function
+	// http://stackoverflow.com/questions/1740700/get-hex-value-rather-than-rgb-value-using-jquery
+    function hex(x) {
+        return ("0" + parseInt(x).toString(16)).slice(-2);
+    }
+	return "#" + hex(rgbArray[0]) + hex(rgbArray[1]) + hex(rgbArray[2]);
+}
+
+var convertPalette = function(rgbArray) {
+	// Convert RGB Array to Hex Array
+	var hexArray = [];
+	for (var i=0; i < 6; i++) {
+		hexArray[i] = rgbArray2hex(rgbArray[i]);
+	}
+	return hexArray;
+}
+
+var showDetails = function(hexArray) {
+	for (var i=0; i < 6; i++) {
+		$("#minipalette"+i+" .miniswatch").css("background", hexArray[i]);
+		$("#minipalette"+i+" span").html(hexArray[i]);
+	}
+}
+
+var useCover = function(paletteArray) {
+	for (var i=0; i < 6; i++) {
+		$("#palette"+i).css("background", paletteArray[i]); // Update Swatches
+		$("#palette"+i).attr("title", paletteArray[i]); // Update Tooltips
+	}
+
+	// Update Example
+	$("#examples").css("background", paletteArray[0]);
+	$("#examples").css("color", paletteArray[1]);
+	$("#examples h2").css("color", paletteArray[2]);
+	$("#examples h3").css("color", paletteArray[3]);
+	$("#examples a").css("color", paletteArray[4]);
+	$("#examples button").css("background", paletteArray[5]);
+}
+
+
+$("body").delegate(".cover", "click", function(){
+	console.log('clicked cover');
+	$("img").removeClass("thiscover");
+	$(this).addClass("thiscover");
+	
+	var rgbaPalette = getCover();
+	// Use RGB palette array from getCover
+	
+	var hexPalette = convertPalette(rgbaPalette);
+	// Get hex palette array by converting RGB array with convertPalette
+	
+	useCover(hexPalette);
+	showDetails(hexPalette);	
+	// Run useCover function, using hexPalette array
+});
+
+$("#details").click(function() {
+	if($(".thiscover").length > 0) {
+		var rgbaPalette = getCover();
+		// Use RGB palette array from getCover
+		var hexPalette = convertPalette(rgbaPalette);
+		// Get hex palette array by converting RGB array with convertPalette
+
+		showDetails(hexPalette);
+		$("#examples").hide();
+		$("#showdetails").show();
+	}
+});
+
+$("#reset").click(function() {
+	// Reset Swatches, Example, & Album Border
+	$("#palette0, #palette1, #palette2, #palette3, #palette4, #palette5, #examples, #examples button").css("background","");
+	$("#palette0, #palette1, #palette2, #palette3, #palette4, #palette5").attr("title", " ");
+	$("#examples, #examples h2, #examples h3, #examples a").css("color","");
+	$("img").removeClass("thiscover");
+	$("#examples").show();
+	$("#showdetails").hide();
+});
+
+
+$("#search_submit").click(function() {
+	$('#albums').html('');
+	
+	// Here is where we're using the Last.fm API to grab album covers
+	var keywords = $("#search_keyword").val();
+	
+	// Thanks to Jons for the help
+	var getAlbums = function (callback) {
+	 $.ajax({
+		url: "http://ws.audioscrobbler.com/2.0/?method=album.search&album="+ keywords +"&api_key=71272e8b7d3a922e2d99f3a823ab16e5&format=json",
+		// Replace api_key with your own last.fm api key!
+		dataType: "json",
+		success: function(json) {
+		callback(json);
+	   }
+	 });
+	};
+	
+	var albumImages = [];
+	
+	var parseAlbumData = function (json) {
+		console.log("parse called");
+		console.log(json);
+		for(var i=0; i < json.results.albummatches.album.length; i++){
+		 var albumarray = json.results.albummatches.album;
+		 albumImages.push(albumarray[i].image[3]['#text']);
+
+		 $('#albums').append('<img src="'+ albumImages[i] +'" class="cover" width="300" height="300">');
+		}
+		console.log(albumImages);
+	//	$(div).html(albumeimage[i])
+	};
+
+getAlbums(parseAlbumData);
+});
+
+$("body").delegate(".cover", "click", function(){
+	console.log('new clicked cover');
+});
+</script>
+</body>
+</html>
