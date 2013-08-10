@@ -58,7 +58,6 @@
     </footer>
 
 <script type="text/javascript">
-$.support.cors = true;
 $('.bottom').tooltip({align: 'bottom'});
 
 var getCover = function() {
@@ -107,7 +106,7 @@ var useCover = function(paletteArray) {
 }
 
 
-$("body").delegate(".cover", "click", function(){
+$(".cover").click(function() {
 	console.log('clicked cover');
 	$("img").removeClass("thiscover");
 	$(this).addClass("thiscover");
@@ -156,25 +155,24 @@ $("#search_submit").click(function() {
 	// Thanks to Jons for the help
 	var getAlbums = function (callback) {
 	 $.ajax({
-		url: "http://ws.audioscrobbler.com/2.0/?method=album.search&album="+ keywords +"&api_key=71272e8b7d3a922e2d99f3a823ab16e5&format=json",
-		// Replace api_key with your own last.fm api key!
-		dataType: "json",
-		success: function(json) {
+	   url: "http://ws.audioscrobbler.com/2.0/?method=album.search&album="+ keywords +"&api_key=71272e8b7d3a922e2d99f3a823ab16e5&format=json",
+	   // Replace api_key with your own last.fm api key!
+	   dataType: "json",
+	   success: function(json) {
 		callback(json);
 	   }
 	 });
 	};
 	
 	var albumImages = [];
-	
+		
 	var parseAlbumData = function (json) {
 		console.log("parse called");
-		console.log(json);
 		for(var i=0; i < json.results.albummatches.album.length; i++){
 		 var albumarray = json.results.albummatches.album;
 		 albumImages.push(albumarray[i].image[3]['#text']);
-
-		 $('#albums').append('<img src="'+ albumImages[i] +'" class="cover" width="300" height="300">');
+		 
+		 $('#albums').append('<img src="'+ albumImages[i] +'" class="cover">');
 		}
 		console.log(albumImages);
 	//	$(div).html(albumeimage[i])
@@ -183,7 +181,7 @@ $("#search_submit").click(function() {
 getAlbums(parseAlbumData);
 });
 
-$("body").delegate(".cover", "click", function(){
+$(".cover").click(function() {
 	console.log('new clicked cover');
 });
 </script>
