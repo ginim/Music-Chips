@@ -81,7 +81,16 @@ h1 {
 	.thiscover {
 		border: solid 5px #EFEFEF;
 	}
-#palette_example {
+#album_palettes {
+}
+#details, #reset {
+	float: left;
+	margin-left: 10px;
+}
+#palette_swatches {
+	overflow: hidden;
+}
+#palette_example, #palette_details {
 	margin-top: 30px;
 	border: solid 1px #EFEFEF;
 	padding: 20px;
@@ -95,4 +104,20 @@ h1 {
 		padding: 5px 10px;
 		margin-top: 5px;
 		float: right;
+	}
+	#palette_details {
+		display: none;
+	}
+.swatch {
+	float: left;
+	margin-right: 5px;
+}
+	#palette_swatches .swatch {
+		width: 25px;
+		height: 25px;
+		border: solid 1px #EFEFEF;
+	}
+	#palette_details .swatch {
+		width: 15px;
+		height: 15px;		
 	}

@@ -24,7 +24,7 @@ var convertPalette = function(rgbArray) {
 
 var showDetails = function(hexArray) {
 	for (var i=0; i < 6; i++) {
-		$("#mini_palette"+i+" .miniswatch").css("background", hexArray[i]);
+		$("#mini_palette"+i+" .swatch").css("background", hexArray[i]);
 		$("#mini_palette"+i+" span").html(hexArray[i]);
 	}
 }
@@ -69,4 +69,14 @@ $("#details").click(function() {
 		$("#palette_example").hide();
 		$("#palette_details").show();
 	}
+});
+
+$("#reset").click(function() {
+	// Reset Swatches, Example, & Album Border
+	$("#palette0, #palette1, #palette2, #palette3, #palette4, #palette5, #palette_example, #palette_example button").css("background","");
+	$("#palette0, #palette1, #palette2, #palette3, #palette4, #palette5").attr("title", " ");
+	$("#palette_example, #palette_example h2, #palette_example h3, #palette_example a").css("color","");
+	$("img").removeClass("thiscover");
+	$("#palette_example").show();
+	$("#palette_details").hide();
 });
