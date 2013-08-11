@@ -71,6 +71,19 @@ $("#details").click(function() {
 	}
 });
 
+$("#example").click(function() {
+	if($(".thiscover").length > 0) {
+		var rgbaPalette = getCover();
+		// Use RGB palette array from getCover
+		var hexPalette = convertPalette(rgbaPalette);
+		// Get hex palette array by converting RGB array with convertPalette
+
+		showDetails(hexPalette);
+		$("#palette_example").show();
+		$("#palette_details").hide();
+	}
+});
+
 $("#reset").click(function() {
 	// Reset Swatches, Example, & Album Border
 	$("#palette0, #palette1, #palette2, #palette3, #palette4, #palette5, #palette_example, #palette_example button").css("background","");

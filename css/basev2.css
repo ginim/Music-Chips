@@ -83,7 +83,7 @@ h1 {
 	}
 #album_palettes {
 }
-#details, #reset {
+#details, #example, #reset {
 	float: left;
 	margin-left: 10px;
 }
