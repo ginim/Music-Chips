@@ -78,6 +78,9 @@ h1 {
 		border: solid 5px #FFFFFF;
 		margin: 0px 0px 10px 0px;
 	}
+	.thiscover {
+		border: solid 5px #EFEFEF;
+	}
 #palette_example {
 	margin-top: 30px;
 	border: solid 1px #EFEFEF;
