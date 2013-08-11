@@ -56,6 +56,9 @@ $("body").delegate(".cover", "click", function(){
 	useCover(hexPalette);
 	showDetails(hexPalette);	
 	// Run useCover function, using hexPalette array
+
+	$(".palette_link").removeClass("unclickable");
+	$(".palette_link").addClass("clickable");
 });
 
 $("#details").click(function() {
@@ -92,4 +95,6 @@ $("#reset").click(function() {
 	$("img").removeClass("thiscover");
 	$("#palette_example").show();
 	$("#palette_details").hide();
+	$(".palette_link").removeClass("clickable");
+	$(".palette_link").addClass("unclickable");
 });

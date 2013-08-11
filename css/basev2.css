@@ -87,6 +87,12 @@ h1 {
 	float: left;
 	margin-left: 10px;
 }
+	.unclickable {
+		color: #CCCCCC;
+	}
+	.clickable {
+		color: #F5AB58;
+	}
 #palette_swatches {
 	overflow: hidden;
 }
