@@ -1,0 +1,95 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Kameron);
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Kameron', serif;
+	font-weight: normal;
+	text-decoration: none;
+	border: 0;
+}
+body {
+	color: #333333;
+	background: #FAFAFA;
+}
+header {
+	padding: 30px;
+	border-bottom: solid 1px #DEDEDE;
+	clear: both;
+}
+div[role=main] {
+	padding: 30px;
+	background: #FFFFFF;
+	border-top: solid 2px #EFEFEF;
+	border-bottom: solid 1px #E6E6E6;
+	overflow: hidden;
+}
+footer {
+	clear: both;
+	padding: 30px;
+	color: #888888;
+	border-top: solid 2px #F6F6F6;
+	text-shadow: 1px 1px #FFFFFF;
+}
+h1 {
+	background-image: url(../img/musicchips.png);
+	background-repeat: no-repeat;
+	background-position: left 6px;
+	padding-left: 35px;
+}
+
+#album_search {
+	clear: both;
+	overflow: hidden;
+	margin: 0px 0px 20px 0px;
+}
+	#search_keyword {
+		float: left;
+		margin: 5px 0px;
+		border: solid 2px #CCCCCC;
+		padding: 2px 4px;
+		font-size: large;
+	}
+	#search_submit {
+		float: left;
+		margin: 5px 0px 5px 5px;
+		background: #F5AB58;
+		border: solid 2px #F5AB58;
+		color: #FFFFFF;
+		padding: 2px 10px;
+		font-size: large;
+	}
+		#search_submit::-moz-focus-inner {
+			border: 0;
+			padding: 0;
+			margin: 0;
+		}
+#album_covers {
+	width: 330px;
+	height: 310px;
+	float: left;
+	margin-right: 30px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+	.cover {
+		max-width: 300px;
+		max-height: 300px;
+		border: solid 5px #FFFFFF;
+		margin: 0px 0px 10px 0px;
+	}
+#palette_example {
+	margin-top: 30px;
+	border: solid 1px #EFEFEF;
+	padding: 20px;
+	overflow: hidden;
+}
+	#palette_example h2, #palette_example h3 {
+		margin-bottom: 5px;
+	}
+	#palette_example button {
+		font-size: medium;
+		padding: 5px 10px;
+		margin-top: 5px;
+		float: right;
+	}
