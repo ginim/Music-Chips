@@ -98,3 +98,49 @@ $("#reset").click(function() {
 	$(".palette_link").removeClass("clickable");
 	$(".palette_link").addClass("unclickable");
 });
+
+$("#search_submit").click(function() {
+	$('#album_covers').html('');
+
+	// Here is where we're using the Last.fm API to grab album covers
+	var keywords = $("#search_keyword").val();
+
+	// Thanks to Jons for the help
+	var getAlbums = function (callback) {
+	 $.ajax({
+		url: "http://ws.audioscrobbler.com/2.0/?method=album.search&album="+ keywords +"&api_key=71272e8b7d3a922e2d99f3a823ab16e5&format=json",
+		// Replace api_key with your own last.fm api key!
+		dataType: "json",
+		success: function(json) {
+		callback(json);
+	   }
+	 });
+	};
+
+	var albumImages = [];
+
+	var parseAlbumData = function (json) {
+		console.log("parse called");
+		console.log(json);
+		for(var i=0; i < json.results.albummatches.album.length; i++){
+			var albumarray = json.results.albummatches.album;
+			albumImages.push(albumarray[i].image[3]['#text']);
+			console.log(albumImages[i]);
+			$.getImageData({
+				url: albumImages[i],
+				server: "http://img-to-json.appspot.com/",
+				success: function(image){
+					console.log("success in getImageData");
+					$('#albums').append(image);
+				},
+			error: function(xhr, text_status){
+				console.log("error in getImageData");
+			}
+			});
+		}
+	console.log(albumImages);
+	//	$(div).html(albumeimage[i])
+	};
+
+getAlbums(parseAlbumData);
+});
