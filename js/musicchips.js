@@ -128,7 +128,7 @@ $("#search_submit").click(function() {
 			console.log(albumImages[i]);
 			$.getImageData({
 				url: albumImages[i],
-				server: "",
+				server: "http://ginim.net/music-chips/php/getImageData.php",
 				success: function(image){
 					console.log("success in getImageData: " + image);
 					$('#album_covers').append(image);
