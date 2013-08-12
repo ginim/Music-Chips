@@ -128,10 +128,11 @@ $("#search_submit").click(function() {
 			console.log(albumImages[i]);
 			$.getImageData({
 				url: albumImages[i],
-				server: "http://img-to-json.appspot.com/",
+				server: "",
 				success: function(image){
-					console.log("success in getImageData");
-					$('#albums').append(image);
+					console.log("success in getImageData: " + image);
+					$('#album_covers').append(image);
+					$("#album_covers img").addClass('cover');
 				},
 			error: function(xhr, text_status){
 				console.log("error in getImageData");
